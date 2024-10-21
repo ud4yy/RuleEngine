@@ -74,16 +74,42 @@ public class OptimizedRuleCombiner {
             return new Node("operator", "OR", ast1, ast2);
         }
         
+        if (areNodesEquivalent(ast1, ast2)) {
+            return ast1; // If the rules are equivalent, just return one of them
+        }
+        
         Node transformed1 = removeConditions(ast1, commonConds);
         Node transformed2 = removeConditions(ast2, commonConds);
         
         Node commonNode = createCommonConditionNode(commonConds);
         
-        Node orNode = new Node("operator", "OR", transformed1, transformed2);
+        if (transformed1 == null && transformed2 == null) {
+            return commonNode; // If all conditions were common, just return the common node
+        }
+        
+        Node orNode = null;
+        if (transformed1 != null && transformed2 != null) {
+            orNode = new Node("operator", "OR", transformed1, transformed2);
+        } else if (transformed1 != null) {
+            orNode = transformed1;
+        } else {
+            orNode = transformed2;
+        }
         
         return new Node("operator", "AND", commonNode, orNode);
     }
-    
+
+    private static boolean areNodesEquivalent(Node node1, Node node2) {
+        if (node1 == null && node2 == null) return true;
+        if (node1 == null || node2 == null) return false;
+        
+        if (!node1.type.equals(node2.type) || !node1.value.equals(node2.value)) {
+            return false;
+        }
+        
+        return areNodesEquivalent(node1.left, node2.left) && areNodesEquivalent(node1.right, node2.right);
+    }
+
     private static Node removeConditions(Node node, Set<String> conditions) {
         if (node == null) return null;
         
@@ -102,7 +128,6 @@ public class OptimizedRuleCombiner {
         
         return new Node("operator", node.value, leftTransformed, rightTransformed);
     }
-    
     private static Node createCommonConditionNode(Set<String> conditions) {
         if (conditions.isEmpty()) return null;
         

@@ -11,10 +11,12 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("Tree") // Defines the MongoDB collection name
+@Document("Tree")
 public class Trees {
     @Id
-    private String id; // The unique identifier for the document
+    private String id;
 
-    private Map<String, Object> jsonObject; // A Map to represent the JSON object
+    private Map<String, Object> jsonObject;
+    
+    private String rule; // The rule string associated with this tree
 }
