@@ -1,7 +1,7 @@
-package com.zeotap.backend.controllers;
+package com.example.backend.controllers;
 
-import com.zeotap.backend.models.Trees;
-import com.zeotap.backend.service.TreesService;
+import com.example.backend.models.Trees;
+import com.example.backend.service.TreesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
