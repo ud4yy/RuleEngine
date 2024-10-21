@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/trees")
-@CrossOrigin(origins = {"http://localhost:5173","https://rule-engine-delta.vercel.app/"})
+@CrossOrigin(origins = {"http://localhost:5173","https://rule-engine-delta.vercel.app"})
 public class TreesController {
 
     private static final Logger logger = LoggerFactory.getLogger(TreesController.class);
