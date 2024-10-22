@@ -1,6 +1,6 @@
 import React from 'react';
-import RuleEngine from './RuleEngine';
-import Documentation from './Documentation';
+import RuleEngine from './components/RuleEngine';
+import Documentation from './components/Documentation';
 
 
 const App: React.FC = () => {

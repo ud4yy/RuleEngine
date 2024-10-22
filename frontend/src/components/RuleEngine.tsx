@@ -23,7 +23,7 @@ const RuleEngine: React.FC = () => {
 
   const fetchAllRules = async () => {
     try {
-      const response = await fetch('https://ruleengine-9406.onrender.com/api/trees/getall');
+      const response = await fetch('http://localhost:8080/api/trees/getall');
       if (response.ok) {
         const rules: Rule[] = await response.json();
         setExistingRules(rules);
@@ -38,7 +38,7 @@ const RuleEngine: React.FC = () => {
   const handleCreateRule = async () => {
     if (ruleString) {
       try {
-        const response = await fetch('https://ruleengine-9406.onrender.com/api/trees/create', {
+        const response = await fetch('http://localhost:8080/api/trees/create', {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain',
@@ -63,7 +63,7 @@ const RuleEngine: React.FC = () => {
 
   const handleModifyRule = async (ruleId: string, newRule: string) => {
     try {
-      const response = await fetch(`https://ruleengine-9406.onrender.com/api/trees/modify/${ruleId}`, {
+      const response = await fetch(`http://localhost:8080/api/trees/modify/${ruleId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'text/plain',
@@ -85,7 +85,7 @@ const RuleEngine: React.FC = () => {
 
   const handleDeleteRule = async (ruleId: string) => {
     try {
-      const response = await fetch(`https://ruleengine-9406.onrender.com/api/trees/delete/${ruleId}`, {
+      const response = await fetch(`http://localhost:8080/api/trees/delete/${ruleId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -102,7 +102,7 @@ const RuleEngine: React.FC = () => {
   const handleEvaluateRule = async () => {
     if (selectedRuleForEvaluation && jsonInput) {
       try {
-        const response = await fetch(`https://ruleengine-9406.onrender.com/api/trees/evaluate/${selectedRuleForEvaluation}`, {
+        const response = await fetch(`http://localhost:8080/api/trees/evaluate/${selectedRuleForEvaluation}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const RuleEngine: React.FC = () => {
   const handleCombineRules = async () => {
     if (selectedRules.length > 1) {
       try {
-        const response = await fetch('https://ruleengine-9406.onrender.com/api/trees/combine', {
+        const response = await fetch('http://localhost:8080/api/trees/combine', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
