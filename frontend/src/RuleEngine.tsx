@@ -45,10 +45,12 @@ const RuleEngine: React.FC = () => {
           },
           body: ruleString,
         });
+        console.log(response);
         if (response.ok) {
           const newRule: Rule = await response.json();
           setExistingRules([...existingRules, newRule]);
           setRuleString('');
+          console.log(response.ok);
           setMessage({ type: 'success', text: 'Rule created successfully' });
         } else {
           setMessage({ type: 'error', text: 'Failed to create rule' });
