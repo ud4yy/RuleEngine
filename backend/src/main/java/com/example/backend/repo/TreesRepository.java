@@ -1,6 +1,6 @@
-package com.zeotap.backend.repo;
+package com.example.backend.repo;
 
-import com.zeotap.backend.models.Trees;
+import com.example.backend.models.Trees;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

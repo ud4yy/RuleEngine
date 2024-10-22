@@ -1,10 +1,10 @@
-package com.zeotap.backend.service;
+package com.example.backend.service;
 
-import com.zeotap.backend.AST.AstMain;
-import com.zeotap.backend.AST.Node;
-import com.zeotap.backend.AST.OptimizedRuleCombiner;
-import com.zeotap.backend.models.Trees;
-import com.zeotap.backend.repo.TreesRepository;
+import com.example.backend.AST.AstMain;
+import com.example.backend.AST.Node;
+import com.example.backend.AST.OptimizedRuleCombiner;
+import com.example.backend.models.Trees;
+import com.example.backend.repo.TreesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

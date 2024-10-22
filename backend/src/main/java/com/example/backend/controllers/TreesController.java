@@ -1,7 +1,7 @@
-package com.zeotap.backend.controllers;
+package com.example.backend.controllers;
 
-import com.zeotap.backend.models.Trees;
-import com.zeotap.backend.service.TreesService;
+import com.example.backend.models.Trees;
+import com.example.backend.service.TreesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/trees")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class TreesController {
 
     private static final Logger logger = LoggerFactory.getLogger(TreesController.class);
@@ -28,19 +28,19 @@ public class TreesController {
     }
     
     @PostMapping("/create")
-    public ResponseEntity<String> createAST(@RequestBody String ruleString) {
+    public ResponseEntity<Trees> createAST(@RequestBody String ruleString) {
         if (ruleString == null || ruleString.trim().isEmpty()) {
-            return ResponseEntity.badRequest().body("Rule string cannot be null or empty");
+            return ResponseEntity.badRequest().build();
         }
         try {
             Trees createdTree = treesService.createAST(ruleString);
-            return ResponseEntity.ok("Tree created successfully with ID: " + createdTree.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdTree);
         } catch (Exception e) {
             logger.error("Error creating AST: {}", e.getMessage() + "Invalid Rule Or Internal Server Error");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                .body("Error creating tree: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 
     @PostMapping("/evaluate/{id}")
     public ResponseEntity<Boolean> evaluateTree(@PathVariable String id, @RequestBody Map<String, Object> testData) {
